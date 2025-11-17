@@ -1,8 +1,10 @@
 package com.forxt.foreign_exchange_transaction;
+import com.forxt.foreign_exchange_transaction.service.FXDealImportService;
 import com.forxt.foreign_exchange_transaction.service.FXDealService;
 import com.forxt.foreign_exchange_transaction.repository.FxDealRepository;
 import com.forxt.foreign_exchange_transaction.model.Fx_deal;
 import com.forxt.foreign_exchange_transaction.dto.DealRequestDto;
+import com.forxt.foreign_exchange_transaction.service.IsoListeService;
 import org.junit.jupiter.api.Test;
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -14,7 +16,9 @@ import static org.mockito.Mockito.*;
 class FXDealServiceTest {
 
     FxDealRepository fxDealRepository = mock(FxDealRepository.class);
-    FXDealService service = new FXDealService(fxDealRepository);
+    FXDealImportService fxDealImportService = mock(FXDealImportService.class);
+    IsoListeService isoListeService = mock(IsoListeService.class);
+    FXDealService service = new FXDealService(fxDealRepository,fxDealImportService,isoListeService);
     @Test
     void testSaveDealSuccess() {
         DealRequestDto dto = new DealRequestDto();
